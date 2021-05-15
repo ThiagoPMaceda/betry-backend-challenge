@@ -14,6 +14,8 @@ defmodule Betrybebackendchallenge.Users do
 
   def get_user!(id), do: Repo.get!(User, id)
 
+  def get_user_by_email!(email), do: Repo.get_by!(User, email: email)
+
   def create_user(attrs \\ %{}) do
     %User{}
     |> User.changeset(attrs)
@@ -105,5 +107,24 @@ defmodule Betrybebackendchallenge.Users do
 
   def change_user(%User{} = user, attrs \\ %{}) do
     User.changeset(user, attrs)
+  end
+
+  def get_user_by_email_and_password(email, password) do
+    case Repo.get_by(User, email: email) do
+      %User{} = user -> verify_password(user, password)
+      nil -> {:error, :email_or_password_invalid}
+    end
+  end
+
+  def get_user_by_email_and_password(password) do
+    {:error, %{result: "\"email\" is required", status: :bad_request}}
+  end
+
+  defp verify_password(user, password) do
+    if Bcrypt.verify_pass(password, user.password_hash) do
+      {:ok, user}
+    else
+      {:error, :email_or_password_invalid}
+    end
   end
 end

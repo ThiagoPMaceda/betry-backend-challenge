@@ -6,7 +6,8 @@ defmodule Betrybebackendchallenge.Users.User do
     field :displayname, :string
     field :email, :string
     field :image, :string
-    field :password, :string
+    field :password, :string, virtual: true
+    field :password_hash, :string
 
     timestamps()
   end
@@ -26,5 +27,12 @@ defmodule Betrybebackendchallenge.Users.User do
     )
     |> validate_format(:email, ~r/(\w+)@([\w.]+)/, message: "\"email\" must be a valid email")
     |> unique_constraint(:email, message: "Usuário já existe")
+    |> hash_password()
   end
+
+  defp hash_password(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    put_change(changeset, :password_hash, Bcrypt.hash_pwd_salt(password))
+  end
+
+  defp hash_password(changeset), do: changeset
 end
