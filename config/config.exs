@@ -23,6 +23,10 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :betrybebackendchallenge, BetrybebackendchallengeWeb.Guardian,
+  issuer: "betrybebackendchallenge",
+  secret_key: "o+qndi+aziNao9U3wbj2l3HLm+a8Qnffkkwjf63UC45VvmZpKExe9EdQKf10hiiR"
+
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 

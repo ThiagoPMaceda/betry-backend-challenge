@@ -7,6 +7,8 @@ defmodule BetrybebackendchallengeWeb.Router do
 
   scope "/api", BetrybebackendchallengeWeb do
     pipe_through :api
+
+    resources "/user", UsersController, only: [:create]
   end
 
   # Enables LiveDashboard only for development
