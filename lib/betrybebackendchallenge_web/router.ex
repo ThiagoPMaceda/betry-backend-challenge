@@ -5,12 +5,23 @@ defmodule BetrybebackendchallengeWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :user_logged do
+    plug :accepts, ["json"]
+    plug BetrybebackendchallengeWeb.AuthAccessPipeline
+  end
+
   scope "/api", BetrybebackendchallengeWeb do
     pipe_through :api
 
     resources "/user", UsersController, only: [:create]
 
     resources "/login", LoginController, only: [:create]
+  end
+
+  scope "/api", BetrybebackendchallengeWeb do
+    pipe_through :user_logged
+
+    resources "/user", UsersController, only: [:show, :index]
   end
 
   # Enables LiveDashboard only for development
