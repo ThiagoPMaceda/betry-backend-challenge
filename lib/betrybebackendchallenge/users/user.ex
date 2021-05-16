@@ -2,6 +2,9 @@ defmodule Betrybebackendchallenge.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @required_params [:displayname, :email, :image]
+  @derive {Jason.Encoder, only: [:id] ++ @required_params}
+
   schema "users" do
     field :displayname, :string
     field :email, :string
