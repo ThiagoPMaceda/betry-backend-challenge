@@ -22,6 +22,10 @@ defmodule BetrybebackendchallengeWeb.Router do
     pipe_through :user_logged
 
     resources "/user", UsersController, only: [:show, :index]
+
+    delete "/user/me", MeController, :delete
+
+    resources "/post", PostController, only: [:create, :index, :show, :update, :delete]
   end
 
   # Enables LiveDashboard only for development
