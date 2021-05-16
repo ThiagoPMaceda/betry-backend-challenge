@@ -12,7 +12,12 @@ defmodule Betrybebackendchallenge.Users do
     Repo.all(User)
   end
 
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user!(id) do
+    case Repo.get(User, id) do
+      nil -> {:error, %{result: "Usuário não existe", status: :not_found}}
+      user -> {:ok, user}
+    end
+  end
 
   def get_user_by_email!(email), do: Repo.get_by!(User, email: email)
 
@@ -116,7 +121,7 @@ defmodule Betrybebackendchallenge.Users do
     end
   end
 
-  def get_user_by_email_and_password(password) do
+  def get_user_by_email_and_password(_) do
     {:error, %{result: "\"email\" is required", status: :bad_request}}
   end
 
