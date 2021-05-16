@@ -23,13 +23,17 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :betrybebackendchallenge, BetrybebackendchallengeWeb.Guardian,
-  issuer: "betrybebackendchallenge",
-  secret_key: "o+qndi+aziNao9U3wbj2l3HLm+a8Qnffkkwjf63UC45VvmZpKExe9EdQKf10hiiR"
-
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"
+
+config :betrybebackendchallenge, BetrybebackendchallengeWeb.Guardian,
+  issuer: "betrybebackendchallenge",
+  secret_key: "o+qndi+aziNao9U3wbj2l3HLm+a8Qnffkkwjf63UC45VvmZpKExe9EdQKf10hiiR"
+
+config :betrybebackendchallenge, BetrybebackendchallengeWeb.AuthAccessPipeline,
+  module: BetrybebackendchallengeWeb.Guardian,
+  error_handler: BetrybebackendchallengeWeb.AuthErrorHandler
