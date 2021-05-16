@@ -107,7 +107,14 @@ defmodule Betrybebackendchallenge.Users do
   end
 
   def delete_user(%User{} = user) do
-    Repo.delete(user)
+    case Repo.delete(user) do
+      nil ->
+        {:error,
+         %{result: "Something went wrong with the server", status: :internal_server_error}}
+
+      struct ->
+        {:ok, struct}
+    end
   end
 
   def change_user(%User{} = user, attrs \\ %{}) do
