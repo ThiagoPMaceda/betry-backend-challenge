@@ -1,6 +1,8 @@
 defmodule Betrybebackendchallenge.Repo.Migrations.UpdateUsersTable do
   use Ecto.Migration
 
+  alias Betrybebackendchallenge.Blog.Post
+
   def change do
     create table(:users) do
       add :displayname, :string
