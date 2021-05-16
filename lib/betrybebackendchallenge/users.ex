@@ -117,10 +117,6 @@ defmodule Betrybebackendchallenge.Users do
     end
   end
 
-  def change_user(%User{} = user, attrs \\ %{}) do
-    User.changeset(user, attrs)
-  end
-
   def get_user_by_email_and_password(email, password) do
     case Repo.get_by(User, email: email) do
       %User{} = user -> verify_password(user, password)
