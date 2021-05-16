@@ -16,4 +16,22 @@ defmodule BetrybebackendchallengeWeb.UsersController do
       |> render("create.json", token: token)
     end
   end
+
+  def index(conn, _) do
+    BetrybebackendchallengeWeb.Guardian.Plug.current_token(conn)
+
+    with users <- Betrybebackendchallenge.Users.list_users() do
+      conn
+      |> put_status(:ok)
+      |> render("index.json", users: users)
+    end
+  end
+
+  def show(conn, %{"id" => id}) do
+    with {:ok, %User{} = user} <- Betrybebackendchallenge.Users.get_user!(id) do
+      conn
+      |> put_status(:ok)
+      |> render("show.json", user: user)
+    end
+  end
 end
