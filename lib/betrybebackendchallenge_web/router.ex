@@ -25,7 +25,7 @@ defmodule BetrybebackendchallengeWeb.Router do
 
     delete "/user/me", MeController, :delete
 
-    resources "/post", PostController, only: [:create, :index, :show, :update, :delete]
+    resources "/post", PostsController, only: [:create, :index, :show, :update, :delete]
   end
 
   # Enables LiveDashboard only for development
