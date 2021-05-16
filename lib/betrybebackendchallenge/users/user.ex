@@ -2,6 +2,8 @@ defmodule Betrybebackendchallenge.Users.User do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias Betrybebackendchallenge.Blog.Post
+
   @required_params [:displayname, :email, :image]
   @derive {Jason.Encoder, only: [:id] ++ @required_params}
 
@@ -11,6 +13,8 @@ defmodule Betrybebackendchallenge.Users.User do
     field :image, :string
     field :password, :string, virtual: true
     field :password_hash, :string
+
+    has_many :posts, Post
 
     timestamps()
   end
