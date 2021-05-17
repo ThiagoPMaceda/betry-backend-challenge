@@ -7,6 +7,7 @@ defmodule Betrybebackendchallenge.Blog do
   alias Betrybebackendchallenge.Repo
 
   alias Betrybebackendchallenge.Blog.Post
+  alias Betrybebackendchallenge.Users.User
 
   @doc """
   Returns the list of posts.
@@ -19,6 +20,12 @@ defmodule Betrybebackendchallenge.Blog do
   """
   def list_posts do
     Repo.all(Post)
+  end
+
+  def list_posts_and_users do
+    Post
+    |> Repo.all()
+    |> Repo.preload(:user)
   end
 
   @doc """
@@ -35,7 +42,34 @@ defmodule Betrybebackendchallenge.Blog do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id) do
+    Post
+    |> Repo.get(id)
+    |> Repo.preload(:user)
+    |> handle_get_post()
+  end
+
+  defp handle_get_post(nil),
+    do: {:error, %{result: "Post não encontrado", status: :bad_request}}
+
+  defp handle_get_post(post), do: {:ok, post}
+
+  def get_post_if_user_is_authorized(post_id, {:ok, %User{} = user}) do
+    IO.inspect(user.id)
+
+    Post
+    |> Repo.get(post_id)
+    |> Repo.preload(:user)
+    |> check_if_user_is_authorized(user.id)
+  end
+
+  defp check_if_user_is_authorized(%Post{} = post, user_id) do
+    if post.user_id == user_id do
+      {:ok, post}
+    else
+      {:error, %{result: "Usuário não autorizado", status: :unauthorized}}
+    end
+  end
 
   @doc """
   Creates a post.
@@ -53,8 +87,6 @@ defmodule Betrybebackendchallenge.Blog do
     add_id_to_attrs =
       attrs
       |> Map.put("user_id", user_id)
-
-    IO.inspect(add_id_to_attrs)
 
     %Post{}
     |> Post.changeset(add_id_to_attrs)
@@ -99,9 +131,26 @@ defmodule Betrybebackendchallenge.Blog do
 
   """
   def update_post(%Post{} = post, attrs) do
+    IO.inspect(attrs)
+
     post
     |> Post.changeset(attrs)
     |> Repo.update()
+  end
+
+  def check_if_contains_all_params(params) do
+    content = Map.has_key?(params, "content")
+    title = Map.has_key?(params, "title")
+    IO.inspect(content)
+    IO.inspect(title)
+
+    with false <- content == false do
+      {:error, %{result: "\"content\" is required", status: :bad_request}}
+    end
+
+    with false <- title == false do
+      {:error, %{result: "\"title\" is required", status: :bad_request}}
+    end
   end
 
   @doc """
