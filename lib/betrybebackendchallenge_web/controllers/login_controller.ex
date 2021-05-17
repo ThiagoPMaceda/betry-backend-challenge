@@ -22,8 +22,6 @@ defmodule BetrybebackendchallengeWeb.LoginController do
       )
 
   def create(conn, %{"email" => email, "password" => password}) do
-    IO.inspect(email)
-
     with {:ok, %User{} = user} <-
            Betrybebackendchallenge.Users.get_user_by_email_and_password(email, password) do
       {:ok, token, _} = Guardian.encode_and_sign(user)

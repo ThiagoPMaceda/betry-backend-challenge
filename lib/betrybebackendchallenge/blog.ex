@@ -55,8 +55,6 @@ defmodule Betrybebackendchallenge.Blog do
   defp handle_get_post(post), do: {:ok, post}
 
   def get_post_if_user_is_authorized(post_id, {:ok, %User{} = user}) do
-    IO.inspect(user.id)
-
     Post
     |> Repo.get(post_id)
     |> Repo.preload(:user)
@@ -131,8 +129,6 @@ defmodule Betrybebackendchallenge.Blog do
 
   """
   def update_post(%Post{} = post, attrs) do
-    IO.inspect(attrs)
-
     post
     |> Post.changeset(attrs)
     |> Repo.update()
@@ -141,8 +137,6 @@ defmodule Betrybebackendchallenge.Blog do
   def check_if_contains_all_params(params) do
     content = Map.has_key?(params, "content")
     title = Map.has_key?(params, "title")
-    IO.inspect(content)
-    IO.inspect(title)
 
     with false <- content == false do
       {:error, %{result: "\"content\" is required", status: :bad_request}}

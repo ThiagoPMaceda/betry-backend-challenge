@@ -4,8 +4,6 @@ defmodule BetrybebackendchallengeWeb.FallbackController do
   alias BetrybebackendchallengeWeb.ErrorView
 
   def call(conn, {:error, %{result: result, status: status}}) do
-    IO.inspect(result)
-
     conn
     |> put_status(status)
     |> put_view(ErrorView)

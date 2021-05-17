@@ -63,8 +63,6 @@ defmodule BetrybebackendchallengeWeb.PostsController do
   def delete(conn, %{"id" => id}) do
     current_user = Plug.current_resource(conn)
 
-    IO.inspect(current_user)
-
     with {:ok, post} <- Blog.get_post_if_user_is_authorized(id, current_user) do
       with {:ok, %Post{}} <- Blog.delete_post(post) do
         conn
