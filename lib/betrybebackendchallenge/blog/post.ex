@@ -12,14 +12,13 @@ defmodule Betrybebackendchallenge.Blog.Post do
     updated_at_source: :updated
   ]
 
-  @derive {Jason.Encoder, only: [:title, :content, :user_id] ++ [:id]}
+  @derive {Jason.Encoder, only: [:title, :content, :user_id, :updated, :published, :user, :id]}
 
   schema "posts" do
     field :content, :string
     field :title, :string
-    field :user_id, :id
 
-    belongs_to :users, User
+    belongs_to :user, User
 
     timestamps()
   end
