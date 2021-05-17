@@ -61,6 +61,10 @@ defmodule Betrybebackendchallenge.Blog do
     |> check_if_user_is_authorized(user.id)
   end
 
+  defp check_if_user_is_authorized(nil, _user_id) do
+    {:error, %{result: "Post não encontrado", status: :bad_request}}
+  end
+
   defp check_if_user_is_authorized(%Post{} = post, user_id) do
     if post.user_id == user_id do
       {:ok, post}
