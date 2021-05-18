@@ -25,10 +25,10 @@ defmodule BetrybebackendchallengeWeb.PostsController do
   def index(conn, _) do
     Plug.current_token(conn)
 
-    with posts_and_users <- Blog.list_posts_and_users() do
+    with posts <- Blog.list_posts_and_users() do
       conn
       |> put_status(:ok)
-      |> render("index.json", posts_and_users: posts_and_users)
+      |> render("index.json", posts: posts)
     end
   end
 
@@ -36,15 +36,15 @@ defmodule BetrybebackendchallengeWeb.PostsController do
     with posts <- Blog.search_post_by_term(term) do
       conn
       |> put_status(:ok)
-      |> render("index.json", posts_and_users: posts)
+      |> render("index.json", posts: posts)
     end
   end
 
   def show(conn, %{"id" => _search, "q" => term}) when term == "" do
-    with posts_and_users <- Blog.list_posts_and_users() do
+    with posts <- Blog.list_posts_and_users() do
       conn
       |> put_status(:ok)
-      |> render("index.json", posts_and_users: posts_and_users)
+      |> render("index.json", posts: posts)
     end
   end
 
