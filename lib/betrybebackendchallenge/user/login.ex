@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.Login do
+  @moduledoc """
+  User login module
+  """
   alias Betrybebackendchallenge.{User, Repo}
 
   def run(email, password) do

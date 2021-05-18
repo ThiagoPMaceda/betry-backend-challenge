@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.CreatePost do
+  @moduledoc """
+  Create a post
+  """
   alias Betrybebackendchallenge.{Post, Repo}
 
   def run(attrs, user_id) do

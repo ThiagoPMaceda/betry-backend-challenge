@@ -20,7 +20,7 @@ defmodule BetrybebackendchallengeWeb.PostsController do
   action_fallback FallbackController
 
   def create(conn, params) do
-    with {:ok, %User{} = user} = Plug.current_resource(conn) do
+    with {:ok, %User{} = user} <- Plug.current_resource(conn) do
       with {:ok, %Post{} = post} <- CreatePost.run(params, user.id) do
         conn
         |> put_status(:created)

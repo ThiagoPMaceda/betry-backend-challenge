@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.DeleteUser do
+  @moduledoc """
+  Delete a user by id
+  """
   alias Betrybebackendchallenge.{User, Repo}
 
   def run(%User{} = user) do

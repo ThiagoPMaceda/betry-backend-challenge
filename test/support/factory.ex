@@ -1,4 +1,7 @@
 defmodule Blog.Factory do
+  @moduledoc """
+  Module to create factorys to help in tests
+  """
   use ExMachina.Ecto, repo: Betrybebackendchallenge.User
 
   def user_factory do

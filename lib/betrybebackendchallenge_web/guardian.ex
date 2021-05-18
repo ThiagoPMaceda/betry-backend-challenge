@@ -1,4 +1,7 @@
 defmodule BetrybebackendchallengeWeb.Guardian do
+  @moduledoc """
+  Guardian Setup Module
+  """
   use Guardian, otp_app: :betrybebackendchallenge
 
   alias Betrybebackendchallenge.GetUser

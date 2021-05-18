@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.GetPost do
+  @moduledoc """
+  Get a post by id
+  """
   alias Betrybebackendchallenge.{Repo, Post}
 
   def run(id) do

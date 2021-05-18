@@ -1,4 +1,7 @@
 defmodule BetrybebackendchallengeWeb.AuthErrorHandler do
+  @moduledoc """
+  Authentication error handler
+  """
   import Plug.Conn
 
   @behaviour Guardian.Plug.ErrorHandler

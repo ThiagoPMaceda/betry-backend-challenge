@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.Authorized do
+  @moduledoc """
+  Check if user is authorized
+  """
   alias Betrybebackendchallenge.{Repo, User, Post}
 
   def run(post_id, {:ok, %User{} = user}) do

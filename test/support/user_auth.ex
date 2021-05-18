@@ -1,4 +1,7 @@
 defmodule BetrybebackendchallengeWeb.UserAuth do
+  @moduledoc """
+  Module to Helper to authenticate in tests
+  """
   import Blog.Factory
   import Plug.Conn
 

@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.ListPosts do
+  @moduledoc """
+  List all posts
+  """
   import Ecto.Query, only: [from: 2]
 
   alias Betrybebackendchallenge.{Post, Repo}

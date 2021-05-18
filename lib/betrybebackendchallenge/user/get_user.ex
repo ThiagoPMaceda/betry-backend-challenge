@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.GetUser do
+  @moduledoc """
+  Get a user by id
+  """
   alias Betrybebackendchallenge.{User, Repo}
 
   def run(id) do

@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.SearchByPostTerm do
+  @moduledoc """
+  Search by post term using title or content
+  """
   import Ecto.Query
 
   alias Betrybebackendchallenge.{Post, Repo}

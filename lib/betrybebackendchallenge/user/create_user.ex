@@ -1,4 +1,7 @@
 defmodule Betrybebackendchallenge.CreateUser do
+  @moduledoc """
+  Create an user
+  """
   alias Betrybebackendchallenge.{User, Repo}
 
   def run(attrs \\ %{}) do
