@@ -1,19 +1,17 @@
 # Betrybebackendchallenge
 
-To start your Phoenix server:
+Esse foi um desafio realizado para uma vaga de desenvolvedor backend pela trybe, foi escolhido o framework Phoenix.
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Start Phoenix endpoint with `mix phx.server`
+## Como iniciar
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Antes de iniciar o projeto é necessário instalar o phoenix e suas linguagens utilize o guia https://hexdocs.pm/phoenix/installation.html como guia para fazer a instalação.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+Após isso e baixar o projeto:
 
-## Learn more
+  * Instale as dependências utilizando o comando `mix deps.get`
+  * Faça a configuração do banco, nesse projeto é utilizado o Postgres, para alterar as configurações acesse a pasta `dev.exs`
+  * Rode as migrations com `mix ecto.setup`
+  * Começe o servidor Phoenix com `mix phx.server`
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+##
+Faça o import da colletion para saber quais as rotas estão disponíveis no projeto!! [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/1c2d9c10119da27f3f4c)
