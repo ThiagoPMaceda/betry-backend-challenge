@@ -44,6 +44,17 @@ defmodule Betrybebackendchallenge.CreateUser do
          {:error,
           %Ecto.Changeset{
             errors: [
+              displayname: {"can't be blank", [validation: :required]}
+            ]
+          }}
+       ) do
+    {:error, %{result: "\"displayname\" is required", status: :bad_request}}
+  end
+
+  defp handle_create_user(
+         {:error,
+          %Ecto.Changeset{
+            errors: [
               email: {"can't be blank", [validation: :required]}
             ]
           }}
