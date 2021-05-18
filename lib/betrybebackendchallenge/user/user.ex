@@ -2,7 +2,7 @@ defmodule Betrybebackendchallenge.User do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Betrybebackendchallenge.Blog.Post
+  alias Betrybebackendchallenge.Post
 
   @required_params [:displayname, :email, :image]
   @derive {Jason.Encoder, only: [:id] ++ @required_params}

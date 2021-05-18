@@ -12,7 +12,7 @@ defmodule Blog.Factory do
   end
 
   def post_factory do
-    %Betrybebackendchallenge.Blog.Post{
+    %Betrybebackendchallenge.Post{
       content: "The whole text for the blog post goes here in this key",
       id: 2,
       published: "2021-05-16T18:34:44Z",

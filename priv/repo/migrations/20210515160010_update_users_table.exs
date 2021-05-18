@@ -1,7 +1,7 @@
 defmodule Betrybebackendchallenge.Repo.Migrations.UpdateUsersTable do
   use Ecto.Migration
 
-  alias Betrybebackendchallenge.Blog.Post
+  alias Betrybebackendchallenge.Post
 
   def change do
     create table(:users) do

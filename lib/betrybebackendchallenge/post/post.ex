@@ -1,8 +1,8 @@
-defmodule Betrybebackendchallenge.Blog.Post do
+defmodule Betrybebackendchallenge.Post do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias Betrybebackendchallenge.Users.User
+  alias Betrybebackendchallenge.User
 
   @timestamps_opts [
     type: :utc_datetime,
