@@ -3,7 +3,7 @@ defmodule BetrybebackendchallengeWeb.PostsController do
 
   alias Betrybebackendchallenge.Blog.Post
   alias Betrybebackendchallenge.Blog
-  alias Betrybebackendchallenge.Users.User
+  alias Betrybebackendchallenge.User
   alias BetrybebackendchallengeWeb.Guardian.Plug
 
   alias BetrybebackendchallengeWeb.FallbackController

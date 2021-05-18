@@ -1,6 +1,8 @@
 defmodule BetrybebackendchallengeWeb.Guardian do
   use Guardian, otp_app: :betrybebackendchallenge
 
+  alias Betrybebackendchallenge.GetUser
+
   def subject_for_token(resource, _claims) do
     sub = to_string(resource.id)
     {:ok, sub}
@@ -12,7 +14,7 @@ defmodule BetrybebackendchallengeWeb.Guardian do
 
   def resource_from_claims(claims) do
     id = claims["sub"]
-    resource = Betrybebackendchallenge.Users.get_user!(id)
+    resource = GetUser.run(id)
     {:ok, resource}
   end
 

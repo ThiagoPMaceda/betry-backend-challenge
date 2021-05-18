@@ -1,4 +1,4 @@
-defmodule Betrybebackendchallenge.Users.User do
+defmodule Betrybebackendchallenge.User do
   use Ecto.Schema
   import Ecto.Changeset
 

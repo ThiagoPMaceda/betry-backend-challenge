@@ -1,7 +1,7 @@
 defmodule BetrybebackendchallengeWeb.LoginController do
   use BetrybebackendchallengeWeb, :controller
 
-  alias Betrybebackendchallenge.Users.User
+  alias Betrybebackendchallenge.{User, Login}
   alias BetrybebackendchallengeWeb.FallbackController
   alias BetrybebackendchallengeWeb.Guardian
 
@@ -23,7 +23,7 @@ defmodule BetrybebackendchallengeWeb.LoginController do
 
   def create(conn, %{"email" => email, "password" => password}) do
     with {:ok, %User{} = user} <-
-           Betrybebackendchallenge.Users.get_user_by_email_and_password(email, password) do
+           Login.run(email, password) do
       {:ok, token, _} = Guardian.encode_and_sign(user)
 
       conn

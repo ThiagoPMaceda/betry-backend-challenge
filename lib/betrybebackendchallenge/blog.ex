@@ -7,7 +7,7 @@ defmodule Betrybebackendchallenge.Blog do
   alias Betrybebackendchallenge.Repo
 
   alias Betrybebackendchallenge.Blog.Post
-  alias Betrybebackendchallenge.Users.User
+  alias Betrybebackendchallenge.User
 
   @doc """
   Returns the list of posts.
