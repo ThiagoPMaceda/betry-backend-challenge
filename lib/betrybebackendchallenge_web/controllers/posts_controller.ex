@@ -32,7 +32,23 @@ defmodule BetrybebackendchallengeWeb.PostsController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"id" => _search, "q" => term}) when term != "" do
+    with posts <- Blog.search_post_by_term(term) do
+      conn
+      |> put_status(:ok)
+      |> render("index.json", posts_and_users: posts)
+    end
+  end
+
+  def show(conn, %{"id" => _search, "q" => term}) when term == "" do
+    with posts_and_users <- Blog.list_posts_and_users() do
+      conn
+      |> put_status(:ok)
+      |> render("index.json", posts_and_users: posts_and_users)
+    end
+  end
+
+  def show(conn, %{"id" => id}) when id != "search" do
     with {:ok, post} <- Blog.get_post!(id) do
       conn
       |> put_status(:ok)
