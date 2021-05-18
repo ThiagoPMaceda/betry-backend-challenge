@@ -62,15 +62,15 @@ defmodule BetrybebackendchallengeWeb.PostsController do
   end
 
   def update(conn, %{"content" => content, "title" => title, "id" => post_id} = _params) do
-    current_user = Plug.current_resource(conn)
-
     attrs_to_update = %{"title" => title, "content" => content}
 
-    with {:ok, post} <- Authorized.run(post_id, current_user) do
-      with {:ok, updated_post} <- UpdatePost.run(post, attrs_to_update) do
-        conn
-        |> put_status(:ok)
-        |> render("update.json", updated_post: updated_post)
+    with {:ok, %User{}} <- current_user = Plug.current_resource(conn) do
+      with {:ok, post} <- Authorized.run(post_id, current_user) do
+        with {:ok, updated_post} <- UpdatePost.run(post, attrs_to_update) do
+          conn
+          |> put_status(:ok)
+          |> render("update.json", updated_post: updated_post)
+        end
       end
     end
   end
@@ -82,12 +82,12 @@ defmodule BetrybebackendchallengeWeb.PostsController do
     do: {:error, %{result: "\"content\" is required", status: :bad_request}}
 
   def delete(conn, %{"id" => id}) do
-    current_user = Plug.current_resource(conn)
-
-    with {:ok, post} <- Authorized.run(id, current_user) do
-      with {:ok, %Post{}} <- DeletePost.run(post) do
-        conn
-        |> send_resp(201, "")
+    with {:ok, %User{}} <- current_user = Plug.current_resource(conn) do
+      with {:ok, post} <- Authorized.run(id, current_user) do
+        with {:ok, %Post{}} <- DeletePost.run(post) do
+          conn
+          |> send_resp(201, "")
+        end
       end
     end
   end
