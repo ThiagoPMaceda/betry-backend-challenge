@@ -1,6 +1,6 @@
 defmodule Betrybebackendchallenge.CreateUser do
   @moduledoc """
-  Create an user
+  Create a user
   """
   alias Betrybebackendchallenge.{User, Repo}
 
