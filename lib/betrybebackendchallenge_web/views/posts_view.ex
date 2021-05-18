@@ -9,8 +9,22 @@ defmodule BetrybebackendchallengeWeb.PostsView do
     }
   end
 
-  def render("index.json", %{posts_and_users: posts_and_users}) do
-    posts_and_users
+  def render("index.json", %{posts: posts}) do
+    Enum.map(posts, fn post ->
+      %{
+        id: post.id,
+        title: post.title,
+        content: post.content,
+        published: post.published,
+        updated: post.updated,
+        user: %{
+          id: post.user.id,
+          displayName: post.user.displayname,
+          email: post.user.email,
+          image: post.user.image
+        }
+      }
+    end)
   end
 
   def render("show.json", %{post: post}) do
