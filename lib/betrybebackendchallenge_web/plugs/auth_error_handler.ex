@@ -4,7 +4,7 @@ defmodule BetrybebackendchallengeWeb.AuthErrorHandler do
   @behaviour Guardian.Plug.ErrorHandler
 
   @impl Guardian.Plug.ErrorHandler
-  def auth_error(conn, {type, reason = :invalid_token}, _opts) do
+  def auth_error(conn, {_type = :invalid_token, _reason}, _opts) do
     body = Jason.encode!(%{message: "Token expirado ou inválido"})
 
     conn
@@ -13,7 +13,7 @@ defmodule BetrybebackendchallengeWeb.AuthErrorHandler do
   end
 
   @impl Guardian.Plug.ErrorHandler
-  def auth_error(conn, {type, reason = :unauthenticated}, _opts) do
+  def auth_error(conn, {_type = :unauthenticated, _reason}, _opts) do
     body = Jason.encode!(%{message: "Token não encontrado"})
 
     conn
@@ -22,7 +22,7 @@ defmodule BetrybebackendchallengeWeb.AuthErrorHandler do
   end
 
   @impl Guardian.Plug.ErrorHandler
-  def auth_error(conn, {type, reason}, _opts) do
+  def auth_error(conn, {type, _reason}, _opts) do
     body = Jason.encode!(%{message: to_string(type)})
 
     conn
