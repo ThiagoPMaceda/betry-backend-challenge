@@ -18,7 +18,7 @@ defmodule BetrybebackendchallengeWeb.LoginController do
     do:
       FallbackController.call(
         conn,
-        {:error, %{result: "\"email\" is not allowed to be empty", status: :bad_request}}
+        {:error, %{result: "\"password\" is not allowed to be empty", status: :bad_request}}
       )
 
   def create(conn, %{"email" => email, "password" => password}) do
