@@ -37,13 +37,12 @@ defmodule BetrybebackendchallengeWeb.PostsViewTest do
         %{
           title: "first title",
           content: "first content",
-          user_id: 1,
           updated: "2021-05-16T18:33:56Z",
           published: "2021-05-16T18:33:56Z",
           id: 1,
           user: %{
             id: 1,
-            displayname: "Joe doe",
+            displayName: "Joe Doe",
             email: "joedoe@gmail.com",
             image:
               "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/joe.png"
@@ -52,13 +51,12 @@ defmodule BetrybebackendchallengeWeb.PostsViewTest do
         %{
           title: "second title",
           content: "second content",
-          user_id: 1,
           updated: "2021-05-16T18:34:44Z",
           published: "2021-05-16T18:34:44Z",
           id: 2,
           user: %{
             id: 1,
-            displayname: "Joe Doe",
+            displayName: "Joe Doe",
             email: "joedoe@gmail.com",
             image:
               "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/joe.png"
@@ -66,7 +64,7 @@ defmodule BetrybebackendchallengeWeb.PostsViewTest do
         }
       ]
 
-      posts_and_users = [
+      posts = [
         %{
           title: "first title",
           content: "first content",
@@ -76,7 +74,7 @@ defmodule BetrybebackendchallengeWeb.PostsViewTest do
           id: 1,
           user: %{
             id: 1,
-            displayname: "Joe doe",
+            displayname: "Joe Doe",
             email: "joedoe@gmail.com",
             image:
               "http://4.bp.blogspot.com/_YA50adQ-7vQ/S1gfR_6ufpI/AAAAAAAAAAk/1ErJGgRWZDg/S45/joe.png"
@@ -99,7 +97,7 @@ defmodule BetrybebackendchallengeWeb.PostsViewTest do
         }
       ]
 
-      assert response == PostsView.render("index.json", %{posts_and_users: posts_and_users})
+      assert response == PostsView.render("index.json", %{posts: posts})
     end
   end
 
