@@ -4,7 +4,7 @@ defmodule Blog.Factory do
   """
   use ExMachina.Ecto, repo: Betrybebackendchallenge.User
 
-  def user_factory do
+  def users_factory do
     %Betrybebackendchallenge.User{
       id: 1,
       displayname: "Brett Wiltshir",
